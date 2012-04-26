@@ -1,0 +1,100 @@
+\documentclass[12pt]{article}
+
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{color}
+
+\title{Python-exercises\\ Object-oriented programming}
+
+\newcommand{\ind}[1]{_{\mathrm{#1}}}
+
+\begin{document}
+
+\definecolor{keywords}{RGB}{255,0,90}
+\definecolor{comments}{RGB}{60,179,113}
+%\lstset{language=Python,
+%  keywordstyle=color{keywords},
+%  commentstyle=color{comments}emph}
+
+\maketitle
+
+\section{String}
+\textit{A simple class}
+\begin{enumerate}
+\item Write a class with one string \texttt{mystring} as member variable which is initialized in the constructor.
+\item Add a method which is given another string \texttt{other} as argument. The purpose of this method shall be to test if \texttt{other} is contained in \texttt{mystring}.\\
+\textit{Hint:} Try the \texttt{in} keyword.
+\end{enumerate}
+
+\section{Animal}
+\textit{Inheritance}\\
+\begin{enumerate}
+\item Write an \texttt{Animal} base class. Each animal shall have a an age and a weight. Once set in the constructor these variables should not be changeable from the outside (you cannot just change the age of an animal as you like, right?). But provide functions that allow to read the values of these variables.\\
+\emph{Note:} In Python ``private'' attributes are not really private. But it is the best protection of member attributes against the outside that we can get --- so we take it.
+\item Implement a \texttt{speak} and a \texttt{move} method which print an error message (an abstract animal can neither speak nor move).
+\item Write a \texttt{Cat} and a \texttt{Fish} class which inherit from \texttt{Animal}. Override the \texttt{speak} and \texttt{move} methods such that they print out an appropriate message when called (something like ``Meow'' for the cat\dots)
+\item Test your implementation in the python interpreter by creating instances of \texttt{Cat} and \texttt{Fish}.
+\item Try to make sense of what's happening here.
+\begin{lstlisting}
+> c=Cat(2,3.7)
+> c.speak()
+Meow.
+> Animal.speak(c)
+I'm an abstract enable and cannot speak.
+> num = 3.7
+> Animal.speak(num)
+[some peculiar Python-error message]
+\end{lstlisting}
+\end{enumerate}
+
+\section{Neuron}
+\textit{A more complex example: using what we've learned so far}\\
+The equation determining the membrane potential of a \emph{leaky integrate and fire neuron} is given by 
+\[c\ind{M}\dot{V}=-g\ind{L}\left(V-V\ind{L}\right)+i\ind{ext}\]
+where $c\ind{M}$ is the membrane potential, $g\ind{L}$ the leak conductance, $V\ind{L}$ the corresponding reversal potential and $i\ind{ext}$ an external current that drives the neuron.
+
+In addition, whenever $V$ becomes larger than a threshold value $V\ind{th}$ a spike is elicited and $V$ is reset to a value $V\ind{r}$.
+\begin{enumerate}
+\item Write a class which is initialized with the necessary parameters (like $c\ind{M},\dots$, don't forget an initial value for $V$). Except for the external current it should not be possible to change the neuron parameters after instanciation.\\
+Cf. the hint in exercise 2.1.
+\item Use 
+\[ \dot{V}\approx\frac{V(t+h)-V(t)}{h}\]
+ to derive an update rule $V(t+h)=\dots$.
+\item Implement a method which updates $V$ according to this rule until a time $T$ has passed. In each step append the newly calculated $V$ to a list \texttt{trace}.
+\item Now consider that $V$ is reset everytime it crosses the threshold.
+\item Add a method that uses ``matplotlib'' to plot the voltage trace.
+\item Test your neuron for different initial values for $V$ and different
+  external currents $i\ind{ext}$.
+\item \emph{If you are quick:} Simulate a network of neurons. Each neuron is
+  connected to some others (e.g. with a predefined probability). The equation
+  to simulate is now 
+\[c\ind{M}\dot{V_j}=-g\ind{L}\left(V_j-V\ind{L}\right)+i\ind{ext} + i\ind{j,syn}\]
+where 
+\[i\ind{j,syn} = \sum\limits_{t_j^{(k)}} w_{j,k} K(t-t_j^{(k)})\]
+and $K(t)=\delta_{t,0}$. $w_{j,k}$ are weight factors and $t_j^{(k)}$ is the time when neuron $j$ receives its $k$-th spike.
+  
+\end{enumerate}
+
+\section{Zoo}
+\textit{Special methods}\\
+We want to collect some animals in a \texttt{Zoo} object. It will consist of a number of animals and each of them should have a name. Provide a way to add new animals to the zoo. Then implement some special methods like
+\begin{itemize}
+\item the length-operator \texttt{\_\_len\_\_(self)}, to see how many inhabitants the zoo has. Test with \texttt{len(myzoo)} (where \texttt{myzoo} is an instance of \texttt{Zoo})
+\item the comparison operator \texttt{\_\_cmp\_\_(self,rhs)} which should return a negative integer if \texttt{self<rhs}, zero if \texttt{self==rhs}, or a positive integer if \texttt{self>rhs}. Test with \texttt{myzoo1<myzoo2} ...
+\item the subscripting operator \texttt{\_\_getitem\_\_(self,name)} to access an animal from the zoo by name (e.g. \texttt{z[``blub''].speak()}),
+\item \dots
+\end{itemize}
+
+%\section{Copying and Assignment}
+%\textit{Behaving of complex objects under copying and assignment}\\
+
+\section{Temperature}
+
+Write a class that stores a temperature in one unit and allows accessing it in
+several other ones
+(cf. \url{http://en.wikipedia.org/wiki/Conversion_of_units_of_temperature} for
+conversion formulas).\\
+\emph{Hint:} Have a look at \texttt{\_\_getattr\_\_, \_\_setattr\_\_ } to
+access and set temperatures.
+
+\end{document}
