@@ -25,9 +25,9 @@
 \item Make a 'for' loop that sums the numbers from 1 to 100. Change the code to sum only the odd numbers.
 \item Make a variable word1='gateman'. Make a for loop that inverts the letter order of word1.
 \item Write the codes that produce the depicted program flows:\\
-\includegraphics[scale=0.5]{./pics/p21.jpg}
+\includegraphics[scale=0.5]{./p21.jpg}
 
-\includegraphics[scale=0.5]{./pics/p22.jpg}
+\includegraphics[scale=0.5]{./p22.jpg}
 \end{enumerate}
 \pagebreak
 \section{Script}
