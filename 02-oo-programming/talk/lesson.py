@@ -69,9 +69,21 @@ def IDontLikeMyGrade(studentID):
 class Student:
     """This is the blueprint for a student""" # docstring
     
-    # constructor
     # NOTE: 'self' has to be stated explicitely
     # 'self' is like 'this' in C++/Java
+    def hi(self):
+        print "hi"
+
+    # a method
+    # NOTE again: the first argument of a method must be 'self'
+    # In principle you could call it differently but 'self' is convention
+    def get_age(self):
+        return self.age
+
+    def set_age(self, newage):
+        self.age = newage
+
+    # constructor
     def __init__(self,n,a):
         
         # attributes are defined simply by using them
@@ -79,15 +91,6 @@ class Student:
         self.age = a
 
         print 'Hi, I am student %s. Thanks for creating me.' % self.name
-    
-    # a method
-    # NOTE again: the first argument of a method must be 'self'
-    # In principle you could call it diffenetly but 'self' is convention
-    def get_age(self):
-        return self.age
-
-    def set_age(self, newage):
-        self.age = newage
 
 # Now that we have a blueprint for a student let's instantiate one:
 bob = Student('Bob', 25)

@@ -21,15 +21,23 @@
 \section{String}
 \textit{A simple class}
 \begin{enumerate}
-\item Write a class with one string \texttt{mystring} as member variable which is initialized in the constructor.
+\item Write a class with one member variable called \texttt{mystring} and
+  initialize it in the constructor.
+\item Add a class (static) variable called \texttt{counter} and initialize it
+  with 0.
 \item Add a method which is given another string \texttt{other} as argument. The purpose of this method shall be to test if \texttt{other} is contained in \texttt{mystring}.\\
 \textit{Hint:} Try the \texttt{in} keyword.
+\item Change the initializer such that it increments counter by one.
+\item Create several instances of this String class and check afterwards how
+  many you have.
+\item Add a 'destructor' function \texttt{\_\_del\_\_} which decreases
+  \texttt{counter} by one. Test it!
 \end{enumerate}
 
 \section{Animal}
 \textit{Inheritance}\\
 \begin{enumerate}
-\item Write an \texttt{Animal} base class. Each animal shall have a an age and a weight. Once set in the constructor these variables should not be changeable from the outside (you cannot just change the age of an animal as you like, right?). But provide functions that allow to read the values of these variables.\\
+\item Write an \texttt{Animal} base class. Each animal shall have an age and a weight. Once set in the constructor these variables should not be changeable from the outside (you cannot just change the age of an animal as you like, right?). But provide functions that allow to read the values of these variables.\\
 \emph{Note:} In Python ``private'' attributes are not really private. But it is the best protection of member attributes against the outside that we can get --- so we take it.
 \item Implement a \texttt{speak} and a \texttt{move} method which print an error message (an abstract animal can neither speak nor move).
 \item Write a \texttt{Cat} and a \texttt{Fish} class which inherit from \texttt{Animal}. Override the \texttt{speak} and \texttt{move} methods such that they print out an appropriate message when called (something like ``Meow'' for the cat\dots)
@@ -40,7 +48,7 @@
 > c.speak()
 Meow.
 > Animal.speak(c)
-I'm an abstract enable and cannot speak.
+I'm an abstract animal and cannot speak.
 > num = 3.7
 > Animal.speak(num)
 [some peculiar Python-error message]
@@ -62,7 +70,7 @@ Cf. the hint in exercise 2.1.
  to derive an update rule $V(t+h)=\dots$.
 \item Implement a method which updates $V$ according to this rule until a time $T$ has passed. In each step append the newly calculated $V$ to a list \texttt{trace}.
 \item Now consider that $V$ is reset everytime it crosses the threshold.
-\item Add a method that uses ``matplotlib'' to plot the voltage trace.
+\item \emph{For Friday:} Add a method that uses ``matplotlib'' to plot the voltage trace.
 \item Test your neuron for different initial values for $V$ and different
   external currents $i\ind{ext}$.
 \item \emph{If you are quick:} Simulate a network of neurons. Each neuron is
@@ -70,8 +78,12 @@ Cf. the hint in exercise 2.1.
   to simulate is now 
 \[c\ind{M}\dot{V_j}=-g\ind{L}\left(V_j-V\ind{L}\right)+i\ind{ext} + i\ind{j,syn}\]
 where 
-\[i\ind{j,syn} = \sum\limits_{t_j^{(k)}} w_{j,k} K(t-t_j^{(k)})\]
-and $K(t)=\delta_{t,0}$. $w_{j,k}$ are weight factors and $t_j^{(k)}$ is the time when neuron $j$ receives its $k$-th spike.
+\[i\ind{j,syn} = \sum\limits_k \sum\limits_{m} w_{jk} K(t-t_{jk}^{(m)})\]
+and $K(t)=\delta_{t,0}$. $w_{j,m}$ are weight factors specifying the strength
+of the connection between neuron $m$ and $j$ and $t_{jk}^{(m)}$ is the time
+when neuron $j$ receives its $m$-th spike from neuron $k$. In other words:
+whenever neuron $j$ receives a spike from neuron $k$ its voltage changes by an
+amount $w_{jk}$.
   
 \end{enumerate}
 

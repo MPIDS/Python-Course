@@ -1,0 +1,102 @@
+\documentclass[smallheadings,12pt]{scrartcl}
+\usepackage{marvosym}
+\usepackage{color}
+\usepackage{float}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{soul} % underlining text
+\geometry{verbose,letterpaper,tmargin=2cm,bmargin=3cm,lmargin=2.5cm,rmargin=3.5cm}
+\usepackage[utf8]{inputenc}
+\usepackage[bookmarks,colorlinks=true]{hyperref}
+\usepackage{listings}
+
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+%----------------------------------------
+\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}
+\DeclareMathOperator*{\sgn}{sgn}
+\DeclareMathOperator*{\sig}{sig}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+\newcommand{\cmd}[1]{\texttt{#1}}
+%--------------------------------------
+
+
+\begin{document}
+\parindent1cm
+\pagestyle{myheadings}
+\title{Programming a single-user dungeon}
+\lstset{language=Python,numbers=left,frame=shadowbox}
+
+\maketitle
+
+\section*{Multi user dungeons}
+
+For a long time, playing role-playing games on the computer meant connecting to a
+remote server and interacting via text with the virtual world. These games, called MUDs~(multi user dungeon), were created in the 70s and quickly spread among university students.  
+They are also considered the embryo of famous multi player games as Ultima Online, Everquest
+and World of Warcraft. A more complete description of its history can be found
+on Wikipedia (\url{http://en.wikipedia.org/wiki/MUD}). 
+
+A MUD is a mixture of game and chat, with a text-based interface. This allows a very rich description
+of the world, only limited by the designer's imagination. This interface consists of a prompt, where
+commands (verbs) are typed and results are output on the screen. There are verbs for moving 
+(``\cmd{go [direction]}''), looking around (``\cmd{look}'') and also to act on items of the world. 
+For example, ``\cmd{eat apple}'' would apply the verb \cmd{eat} to the object of name \cmd{apple}.
+Some of the verbs are actually shortcuts. One can use directions (e.g., \cmd{north}, \cmd{south},
+\cmd{east} and \cmd{west}) as verbs. The rooms in this virtual world are connected by directions,
+and each has a description of how it looks like.
+
+\section*{Project}
+
+For this project, you will implement a ``single user dungeon'' (SUD). This is the single player version of a MUD. 
+The goal is to have a world composed of rooms, each containing a description (how it looks) and linked to other
+rooms (to allow moving). A room should also keep track of the items in it. The description of the room and
+which items are in it should appear when the command ``look'' is used. Items must have at least a name,
+description and respond to verbs. For example, a guitar that is ``used'' (i.e., \cmd{use guitar}) should
+play a song. If you look at an item (\cmd{look guitar}), you should see a description of how it looks like. 
+You also need to keep track of the player: his name and belongings. 
+
+The simplest way to manage this is to create classes Room, Item and Player. Which variables and
+functions should they contain? A suggestion to make your life simpler: define methods for each verb
+and call them accordingly. As not every item is the same (some will be edible, others will be playable),
+you can create classes derived from Item: Food, Drink, MusicalInstrument, Notebook, etc, which answer to
+different verbs, or even behave differently when \cmd{look}'ed. Be creative. You can also play some MUDs
+for inspiration (links on Wikipedia).  
+
+
+\section*{Notes and Hints}
+ \begin{enumerate}
+ \item Try to start with a simple script which just asks for
+ the player's name and allows him to type commands in a prompt. For this, you can loop reading the raw 
+ input and split the string in order to get the first word.
+ 
+ \item After you have a working prompt, you can create a single room and have items on it.
+ This should allow you to test different verbs.
+ 
+  \item As the player has belongings, you should implement verbs ``pick'' and ``drop'',
+  so he can move an item from the world to his inventory and vice-versa. You should also
+  create a verb (\cmd{inventory}) to list his items.
+ 
+ \item If everything is working so far, start linking rooms and test movement. Remember that
+ if room A is north of room B, it also means that room B is south of room A.
+ 
+ \item Command parsing should understand a lazy player. That is, typing just the letter \cmd{l} should work
+ the same as \cmd{look} and the directions can be: \cmd{n}, \cmd{s}, \cmd{e}, \cmd{w}.  
+ 
+ \item How about creating an item that is shy, and screams at the player if it's looked at?
+ 
+ \item Suggestion of worlds: a museum which describes all the Nobel prize winners
+ from G\"ottingen; the inner city of G\"ottingen or some fantasy place from a book that you like.
+ 
+ \item Some suggestion of verbs: \cmd{open}, \cmd{press}, \cmd{destroy}, \cmd{kick},
+ \cmd{eat}, \cmd{play}, \cmd{read}, \cmd{scribble}, \cmd{paint}. Invent some more and have fun!
+ 
+  \end{enumerate}
+ 
+ 
+\end{document}
