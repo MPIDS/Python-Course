@@ -1,4 +1,4 @@
-\documentclass[12pt]{article}
+\documentclass[12pt]{scrartcl}
 
 \usepackage{listings}
 \usepackage{hyperref}
@@ -10,11 +10,42 @@
 
 \begin{document}
 
-\definecolor{keywords}{RGB}{255,0,90}
-\definecolor{comments}{RGB}{60,179,113}
+%\definecolor{keywords}{RGB}{255,0,90}
+%\definecolor{comments}{RGB}{60,179,113}
 %\lstset{language=Python,
 %  keywordstyle=color{keywords},
 %  commentstyle=color{comments}emph}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+ 
+\lstset{ %
+  language=Python,                % the language of the code
+  basicstyle=\footnotesize,           % the size of the fonts that are used for the code
+  numbers=left,                   % where to put the line-numbers
+  numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers
+  stepnumber=2,                   % the step between two line-numbers. If it's 1, each line 
+                                  % will be numbered
+  numbersep=5pt,                  % how far the line-numbers are from the code
+  backgroundcolor=\color{white},      % choose the background color. You must add \usepackage{color}
+  showspaces=false,               % show spaces adding particular underscores
+  showstringspaces=false,         % underline spaces within strings
+  showtabs=false,                 % show tabs within strings adding particular underscores
+  frame=tRBl,                   % adds a frame around the code
+  rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
+  tabsize=2,                      % sets default tabsize to 2 spaces
+  captionpos=b,                   % sets the caption-position to bottom
+  breaklines=true,                % sets automatic line breaking
+  breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+  title=\lstname,                   % show the filename of files included with \lstinputlisting;
+                                  % also try caption instead of title
+  keywordstyle=\color{blue},          % keyword style
+  commentstyle=\color{dkgreen},       % comment style
+  stringstyle=\color{mauve},         % string literal style
+  escapeinside={\%*}{*)},            % if you want to add a comment within your code
+  morekeywords={*,...}               % if you want to add more keywords to the set
+}
+
 
 \maketitle
 
@@ -48,11 +79,16 @@
 > c.speak()
 Meow.
 > Animal.speak(c)
-I'm an abstract animal and cannot speak.
+I am an abstract animal and cannot speak.
 > num = 3.7
 > Animal.speak(num)
 [some peculiar Python-error message]
 \end{lstlisting}
+\item Add an \texttt{eat} method which takes as an argument the object to eat;
+  for example: \texttt{mycat.eat(myfish)}. Obviously the fish should be dead
+  afterwards, so the method's purpose is to ``kill'' the fish, i.e. the fish
+  should not be accessible any more (the \texttt{myfish} instance should be
+  deleted). How could you accomplish this?
 \end{enumerate}
 
 \section{Neuron}
@@ -70,7 +106,13 @@ Cf. the hint in exercise 2.1.
  to derive an update rule $V(t+h)=\dots$.
 \item Implement a method which updates $V$ according to this rule until a time $T$ has passed. In each step append the newly calculated $V$ to a list \texttt{trace}.
 \item Now consider that $V$ is reset everytime it crosses the threshold.
-\item \emph{For Friday:} Add a method that uses ``matplotlib'' to plot the voltage trace.
+\item Add a method that uses ``matplotlib'' to plot the voltage
+  trace. As ``matplotlib'' will be treated later, here's a spoiler:
+  \begin{lstlisting}
+    import matplotlib.pyplot as plt
+    plt.ion() # turn on interactive mode
+    plt.plot(xvals,yvals)
+  \end{lstlisting}
 \item Test your neuron for different initial values for $V$ and different
   external currents $i\ind{ext}$.
 \item \emph{If you are quick:} Simulate a network of neurons. Each neuron is
@@ -88,14 +130,42 @@ amount $w_{jk}$.
 \end{enumerate}
 
 \section{Zoo}
-\textit{Special methods}\\
-We want to collect some animals in a \texttt{Zoo} object. It will consist of a number of animals and each of them should have a name. Provide a way to add new animals to the zoo. Then implement some special methods like
+We want to collect some animals (the ones from the \emph{Animal} exercise
+above) in a \texttt{Zoo} object. It will consist of a
+number of animals and each of them should have a name. 
+\begin{enumerate}
+\item Provide a way to add new animals to the zoo. 
+\item \emph{Special methods.} Implement some special methods like
 \begin{itemize}
 \item the length-operator \texttt{\_\_len\_\_(self)}, to see how many inhabitants the zoo has. Test with \texttt{len(myzoo)} (where \texttt{myzoo} is an instance of \texttt{Zoo})
 \item the comparison operator \texttt{\_\_cmp\_\_(self,rhs)} which should return a negative integer if \texttt{self<rhs}, zero if \texttt{self==rhs}, or a positive integer if \texttt{self>rhs}. Test with \texttt{myzoo1<myzoo2} ...
 \item the subscripting operator \texttt{\_\_getitem\_\_(self,name)} to access an animal from the zoo by name (e.g. \texttt{z[``blub''].speak()}),
 \item \dots
 \end{itemize}
+
+\item The zoo welcomes 1000 new animals. As the administration can't come up
+  with so many names at the same time, they shall be named, for the moment, by
+  numbers. \\
+  Write a method with adds a number $n$ of new animals of different species, age
+  and weight. You can use the functions  \texttt{random,randint} and
+  \texttt{randrange} from module \texttt{random} to create random numbers.
+\item Make it possible to rename animals.
+\item For easy book-keeping add a \texttt{select} method which takes one
+  argument \texttt{filter}. \texttt{filter} is itself a function accepting an
+  \texttt{Animal} instance as argument and returning a
+  boolean. \texttt{select} return a list of all animals for which the
+  \texttt{filter} function returns \texttt{True}. Test this function:
+  \begin{itemize}
+  \item select all animals which are younger than 2
+  \item select all animals for which age+weight $\leq \pi$
+  \item select all \texttt{Cat}s
+  \end{itemize}
+\item Let the zoo visitor specify a simple (!!!) criterium for animal
+  selection. I.\,e. create a method \texttt{visitorSelect} which
+  reads(i.e. use \texttt{raw\_input}) a string, \texttt{eval}uate it and then call
+  \texttt{select}. 
+
+\end{enumerate}
 
 %\section{Copying and Assignment}
 %\textit{Behaving of complex objects under copying and assignment}\\

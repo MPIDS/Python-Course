@@ -33,6 +33,31 @@ class Zoo:
         
         self.inhabitants[ rhs[0] ] = rhs[1]
 
+    def addMany(self, Species, nAnimals):
+        from random import random,randint
+        for i in xrange(nAnimals):
+            self.inhabitants[str(i)] = Species(10*random() # weight
+                                               , randint(0,50) # age
+                                               )
+    def rename(self, oldName, newName):
+        self.inhabitants[newName] = self.inhabitants[oldName]
+        del self.inhabitants[oldName]
+
+    def select(self, filter):
+        """
+        Examples for filter:
+        - lambda x: x.age()<2
+        - lambda x: x.age()+x.weight()<3.142
+        - lambda x: type(x)==Cat
+        """
+
+        inh = self.inhabitants # abbreviation
+        return [ inh[x] for x in inh if filter(inh[x]) ]
+
+    def visitorSelect(self):
+        inp = raw_input()
+        return self.select( lambda x: eval(inp) )
+
     def __getitem__(self,name):
         return self.inhabitants[ name ]
     
