@@ -51,11 +51,37 @@ class Cat(Animal):
     def speak(self):
         print "Miau"
 
-class Zoo:
-    """I'm full of animals"""
-    
-    def __init__(self):
-        pass
+    def eat(self, fish):
+        if isinstance(fish,Fish):
+            gdict=globals()
+            delvar=None
+            for g in gdict:
+                if fish is gdict[g]:
+                    delvar=g
+                    break
+            if delvar!=None:
+                del gdict[g]
+                print "Hmmm, that was delicious. Rest in peace fish!"
+        else:
+            print "I'm a cat, I don't eat that crap"
 
-    def __add__(self, dict):
-        pass
+def test_animal():
+    a=Animal(27.23,1)
+    f=Fish(3.141,2)
+    c=Cat(2.718,3)
+
+    pets = [a,f,c]
+
+    for p in pets:
+        p.speak()
+        p.move(2)
+
+    c.eat(a)
+    c.eat(f)
+    try:
+        f.speak()
+    except(NameError):
+        print "Sorry, the fish is gone"
+
+if __name__=='__main__':
+    test_animal()

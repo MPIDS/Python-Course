@@ -1,7 +1,7 @@
 import animal
 
 class Zoo:
-    """This zoo collects same animals which have a name."""
+    """This zoo collects animals which have a name."""
     def __init__(self):
         self.inhabitants = {}
 
@@ -35,7 +35,7 @@ class Zoo:
 
     def addMany(self, Species, nAnimals):
         from random import random,randint
-        for i in xrange(nAnimals):
+        for i in xrange( len(self.inhabitants),len(self.inhabitants)+nAnimals ):
             self.inhabitants[str(i)] = Species(10*random() # weight
                                                , randint(0,50) # age
                                                )
@@ -48,7 +48,7 @@ class Zoo:
         Examples for filter:
         - lambda x: x.age()<2
         - lambda x: x.age()+x.weight()<3.142
-        - lambda x: type(x)==Cat
+        - lambda x: isinstance(x,animal.Cat)
         """
 
         inh = self.inhabitants # abbreviation
@@ -61,3 +61,30 @@ class Zoo:
     def __getitem__(self,name):
         return self.inhabitants[ name ]
     
+def test_zoo():
+    z1=Zoo()
+    z1.add( ("snowball",animal.Cat(3.14,3)) )
+
+    z2=Zoo()
+    z2.add( ("salmon",animal.Fish(1.2,1)) )
+    z2.add( ("jellyfish",animal.Fish(2.7,2)) )
+
+    print "Second zoo has %u inhabitants." % len(z2)
+    print "Is first zoo smaller than second zoo?", z1<z2
+
+    z1["snowball"].speak()
+
+    z1.addMany(animal.Cat, 100)
+    z1.addMany(animal.Fish,100)
+    z1.rename("1","icecube")
+
+    youngAnimals = z1.select(lambda x: x.age()<2)
+    weirdAnimals = z1.select(lambda x: x.age()+x.weight()<=3.14)
+    allCats = z1.select(lambda x: isinstance(x,animal.Cat) )
+    print len(youngAnimals), len(weirdAnimals), len(allCats)
+
+    visitorsAnimals = z1.visitorSelect()
+    print "You visit %u animals." % len(visitorAnimals)
+
+if __name__=='__main__':
+    test_zoo()
