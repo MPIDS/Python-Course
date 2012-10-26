@@ -41,7 +41,7 @@ def printAllStudents2():
 # What we need is a way to combine data and functions -> Classes
 # Another example: Univesity administration: provides functionality
 # like: enroll(), registerForExam()
-# this functionality is imtimately related to some underlying data:
+# this functionality is intimately related to some underlying data:
 # a database of students
 
 ### 0.2 Privacy
@@ -145,9 +145,7 @@ bob = Student('Bob', 25)
 # But this still does:
 print 'Age of Bob:', bob.get_age()
 
-# Hence: it's generally a good idea to hide (make private) the internal 
-# details of the implementation and provide access to the Class's functionality
-# only through a defined interface
+
 
 # And, by the way, accessing special method '__str__
 print bob
