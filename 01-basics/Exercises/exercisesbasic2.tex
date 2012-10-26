@@ -1,5 +1,5 @@
 \documentclass[smallheadings,12pt]{scrartcl}
-\usepackage{marvosym}
+%\usepackage{marvosym}
 \usepackage{color}
 \usepackage{float}
 \usepackage{geometry}
@@ -14,7 +14,6 @@
 \usepackage[english]{babel}
 %\documentclass[normalheadings,twocolumn,12pt]{scrartcl}
 %\usepackage{mysty}
-\usepackage{marvosym}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -40,11 +39,10 @@
 
 \begin{document}
 \parindent0cm
-\pagestyle{myheadings}
-\title{Python-Exercises, basic}
-\date{April 11, 2012}
+%\pagestyle{myheadings}
+\title{Python Exercises\\ Introduction - Advanced}
 \lstset{language=Python,numbers=left,frame=shadowbox}
-
+\date{}
 \maketitle
 
 \section{Find Errors}
@@ -75,7 +73,7 @@ Points may be given in polar $(r,\theta)$ or cartesian coordinates
 $(x,y)$, see Figure~\ref{fig:pol2cart}.
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.3\textwidth]{pics/pol2cart}
+  \includegraphics[width=0.25\textwidth]{pics/pol2cart}
   \caption{Relationship between polar and cartesian coordinates.\label{fig:pol2cart}}
 \end{figure}
 
@@ -151,7 +149,7 @@ uncertain events, is often called Monte Carlo simulation.
   shows up. Write out the estimated probability $p/n$ together with
   the exact result $11/36$.  Run the script a few times with different
   $n$ values and determine from the experiments how large n must be to
-  get the at least three decimals $(0.306)$ of the probability
+  get at least three decimals $(0.306)$ of the probability
   correct.  Use the random module to draw random uniformly distributed
   integers in a specified interval.
 \item Generalize the script to an arbitrary number of dices, $N$.
@@ -177,6 +175,9 @@ uncertain events, is often called Monte Carlo simulation.
   script. However, calling it as an external application gives you the
   opportunity to put any program instead of the Monte-Carlo script
   (say a compiled simulation program you got from a collegue).
+  
+  Use subprocess.call() for calling the script. Note that the subprocess module is most appropriate to learn because this module intends to replace several other, older modules and functions, such as: "os.system","os.spawn*","os.popen*","popen2.*" and "commands.*".
+
 \item Output the result in a comma-separated (.csv) file.
 \item Let {\tt runexternal.py} take command line arguments that allow
   the user to specify ranges in MATLAB-style for which the external
