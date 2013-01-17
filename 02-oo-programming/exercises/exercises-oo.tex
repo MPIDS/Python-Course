@@ -130,6 +130,8 @@ amount $w_{jk}$.
 \end{enumerate}
 
 \section{Zoo}
+\textit{Dictionaries, special methods, random numbers, functions as arguments
+  to functions}\\
 We want to collect some animals (the ones from the \emph{Animal} exercise
 above) in a \texttt{Zoo} object. It will consist of a
 number of animals and each of them should have a name. 
@@ -151,10 +153,10 @@ number of animals and each of them should have a name.
   \texttt{randrange} from module \texttt{random} to create random numbers.
 \item Make it possible to rename animals.
 \item For easy book-keeping add a \texttt{select} method which takes one
-  argument \texttt{filter}. \texttt{filter} is itself a function accepting an
+  argument \texttt{fltr}. \texttt{fltr} is itself a function accepting an
   \texttt{Animal} instance as argument and returning a
   boolean. \texttt{select} return a list of all animals for which the
-  \texttt{filter} function returns \texttt{True}. Test this function:
+  \texttt{fltr} function returns \texttt{True}. Test this function:
   \begin{itemize}
   \item select all animals which are younger than 2
   \item select all animals for which age+weight $\leq \pi$

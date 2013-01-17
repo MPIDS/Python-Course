@@ -14,15 +14,19 @@ class String:
         else:
             return False
 
-s1=String("Hello")
-s2=String("World")
+def test_string():
+    s1=String("Hello")
+    s2=String("World")
 
-print s1.check("el"), s2.check("el")
+    print s1.check("el"), s2.check("el")
 
-print "There are %u String instances" % String.counter
+    print "There are %u String instances" % String.counter
 
-del s2
-print "Now: %u String instances" % String.counter
+    del s2
+    print "Now: %u String instances" % String.counter
 
-s1=1
-print "And now: %u" % String.counter
+    s1=1
+    print "And now: %u" % String.counter
+
+if __name__=='__main__':
+    test_string()
