@@ -1,5 +1,6 @@
 \documentclass[12pt]{scrartcl}
 
+\usepackage{amsmath}
 \usepackage{listings}
 \usepackage{hyperref}
 \usepackage{color}
@@ -52,17 +53,14 @@
 \section{String}
 \textit{A simple class}
 \begin{enumerate}
-\item Write a class with one member variable called \texttt{mystring} and
-  initialize it in the constructor.
-\item Add a class (static) variable called \texttt{counter} and initialize it
-  with 0.
-\item Add a method which is given another string \texttt{other} as argument. The purpose of this method shall be to test if \texttt{other} is contained in \texttt{mystring}.\\
+\item Write a class which consists only one method, the constructor. Apart from the obligatory \texttt{self}, the constructor shall take one additional argument \texttt{s}. In the constructor initialize a member variable of the class, let's call it \texttt{mystring}, with the value of \texttt{s}.
+\item Add an additional method to the class. This method shall also take one argument called \texttt{other} (+ \texttt{self}). In the function body check if \texttt{other} is contained in \texttt{mystring}. If so return \texttt{true}, otherwise return \texttt{false}.\\
 \textit{Hint:} Try the \texttt{in} keyword.
-\item Change the initializer such that it increments counter by one.
-\item Create several instances of this String class and check afterwards how
-  many you have.
+\item Add a class (static) variable called \texttt{counter} to the class and initialize it with 0.
+\item Change the initializer such that it increments \texttt{counter} by one.
+\item Create several instances of this \texttt{String} class and check afterwards how many you have.
 \item Add a 'destructor' function \texttt{\_\_del\_\_} which decreases
-  \texttt{counter} by one. Test it!
+  \texttt{counter} by one. Test it, i.\ e. inspect the value of \texttt{counter}.
 \end{enumerate}
 
 \section{Animal}
@@ -101,10 +99,14 @@ In addition, whenever $V$ becomes larger than a threshold value $V\ind{th}$ a sp
 \begin{enumerate}
 \item Write a class which is initialized with the necessary parameters (like $c\ind{M},\dots$, don't forget an initial value for $V$). Except for the external current it should not be possible to change the neuron parameters after instanciation.\\
 Cf. the hint in exercise 2.1.
-\item Use 
+\item Using the Euler method 
 \[ \dot{V}\approx\frac{V(t+h)-V(t)}{h}\]
- to derive an update rule $V(t+h)=\dots$.
-\item Implement a method which updates $V$ according to this rule until a time $T$ has passed. In each step append the newly calculated $V$ to a list \texttt{trace}.
+we can derive the following update rule:
+\begin{align}
+  V(t+h) &= V(t) + h\dot{V}(t) \\
+  &= V(t) + \frac{1}{c_m}\left( -g\ind{L}\left(V-V\ind{L}\right)+i\ind{ext} \right)
+\end{align}
+Implement a method which updates $V$ according to this rule until a time $T$ has passed. In each step append the newly calculated $V$ to a list \texttt{trace}.
 \item Now consider that $V$ is reset everytime it crosses the threshold.
 \item Add a method that uses ``matplotlib'' to plot the voltage
   trace. As ``matplotlib'' will be treated later, here's a spoiler:
@@ -180,5 +182,9 @@ several other ones
 conversion formulas).\\
 \emph{Hint:} Have a look at \texttt{\_\_getattr\_\_, \_\_setattr\_\_ } to
 access and set temperatures.
+
+\section{Vector}
+
+A \texttt{list} or \texttt{tuple} can be used to store floating point numbers. They are, however, not suitable as \emph{vector} classes. Namely, apart from performance issues, it would be desirable if one could do basic calculations, such as addition by writing \texttt{z = x + y}, where \texttt{x,y,z} are instances of such a vector class. (Note that a \texttt{list} has an operator \texttt{+} but it does something else!). Therefore write a \texttt{Vector} class which allows such basic vector space operations (e.\ g.: addition, subtraction, scalar multiplication and division, dot product, \dots).
 
 \end{document}
