@@ -5,7 +5,7 @@
 \usepackage{geometry}
 \usepackage{graphicx}
 \usepackage{soul} % underlining text
-\geometry{verbose,letterpaper,tmargin=0cm,bmargin=3cm,lmargin=2.5cm,rmargin=3.5cm}
+\geometry{verbose,letterpaper,tmargin=2cm,bmargin=3cm,lmargin=2.5cm,rmargin=3.5cm}
 \usepackage[utf8]{inputenc}
 \usepackage[dvips,bookmarks,colorlinks=true]{hyperref}
 %\usepackage[bookmarks,colorlinks=true]{hyperref}
@@ -73,7 +73,7 @@ Points may be given in polar $(r,\theta)$ or cartesian coordinates
 $(x,y)$, see Figure~\ref{fig:pol2cart}.
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.25\textwidth]{pics/pol2cart}
+  \includegraphics[width=0.25\textwidth]{pics/pol2cart.eps}
   \caption{Relationship between polar and cartesian coordinates.\label{fig:pol2cart}}
 \end{figure}
 
@@ -96,7 +96,7 @@ $(x,y)$, see Figure~\ref{fig:pol2cart}.
  (\url{www.gutenberg.org}, e.g., \href{http://www.gutenberg.org/cache/epub/964/pg964.txt}{``The Merry Adventures of Robin Hood, by Howard Pyle''}) in
  text format and list the ten most frequently used words. You can use a Dictionary for counting.
 \end{enumerate}
-\textbf{Useful:} string.split(), open(), file.read() and file.write().
+\textbf{Useful:} {\tt string.split(), open(), file.read()} and {\tt file.write()}.
 
 \section{Party game}
 \skills{Random numbers; Loops}
@@ -122,7 +122,7 @@ chooser is said to be ``squeezed'' and is punished. An example of gameplay would
 	\item Chooser dances some very silly children song.
 \end{packed_item}
 Implement this game in Python, where the computer is the chooser.\\[2pt]
-\textbf{Useful:} random.randint() and raw\_input().
+\textbf{Useful:} {\tt random.randint()} and {\tt raw\_input()}.
 
 
 \section{Rock-paper-scissors}
@@ -130,7 +130,7 @@ Implement this game in Python, where the computer is the chooser.\\[2pt]
 
 Implement the game of rock-paper-scissors.
 Extra: make it {rock-paper-scissors-lizard-spock} (if you do not know it, Wikipedia should help).\\[2pt]
-\textbf{Useful:} random.choice().
+\textbf{Useful:} {\tt random.choice()}.
 
 \section{Dice Simulation}
 \skills{Random numbers; Monte-Carlo Simulation}
@@ -159,6 +159,7 @@ uncertain events, is often called Monte Carlo simulation.
   win 10 units of money, otherwise you lose your investment. Should
   you play this game?
 \end{enumerate}
+
 
 \section{Run an external script}
 \skills{Calling external applications; List handling}
@@ -190,6 +191,34 @@ $ python runexternal.py N=1:5 n=100:1000:10000
 should run the script with any combination of $N=1,2,3,4,5$ and
 $n=100,1100,2100,\ldots$. 
  
+\end{enumerate}
+
+
+\section{Calculating a Histogram}
+\skills{Creating a function; List handling; Random numbers}
+
+\begin{enumerate}
+\item Write a function {\tt histgram(data, numbins)} which calculates the
+  histogram of a given data set, where {\tt numbins} gives the number of intervals in which the data range is divided.\\
+  The function should return a tuple of two lists of equal lengths. The first list contains the midpoints of
+  the intervals and the second list contains the
+  counts of data points in the interval. 
+\item Give a pseudo-graphical representation of the distribution, by
+  drawing a number of stars corresponding to the number of
+  data elements in a given interval. Example:
+\begin{verbatim}
+0.0 ***
+0.5 *****
+1.0 ********
+1.5 ******************
+2.0 *************
+2.5 **********
+3.0 ********
+3.5 ******
+4.0 **
+\end{verbatim}
+\item Test the function by drawing samples from different probability
+  distributions from the package {\tt random}. 
 \end{enumerate}
 
 \end{document}
