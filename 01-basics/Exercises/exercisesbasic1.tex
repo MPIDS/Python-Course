@@ -2,6 +2,7 @@
 
 \usepackage{listings}
 %\usepackage[pdftex]{graphicx}
+\usepackage[dvips,bookmarks,colorlinks=true]{hyperref}
 
 \title{Python Exercises\\Introduction - Simple}
 \date{}
@@ -109,4 +110,29 @@ for example: [ [a,b,c],[d,e],[f] ] $\rightarrow$ [ a,b,c,d,e,f ]
 \item Please open the file list1.py and follow the instructions.
 After you are done, there is also list2.py.
 \end{enumerate}
+
+\section{Use of modules}
+
+\begin{enumerate}
+ \item Import the basic math module (\texttt{import math}) to calculate the following simple expressions:
+\begin{itemize}
+ \item $\sin(\pi)$, $\cos(\pi/2)$
+ \item $\exp(10)$
+ \item $2.42^{1.32}$, $8.43^{2.76}$
+\end{itemize}
+\textit{Hint:} Most functions in a module can be called with \texttt{module.function(params)}, e.g. \texttt{math.pow(a,b)} for $a^b$.
+ \item Use the \texttt{cmath} module to calculate the following complex numbers
+\begin{itemize}
+ \item $\sqrt{-1}$
+ \item $\imath^2$
+ \item $\sin(2\imath)$
+\end{itemize}
+
+ \item Import the \texttt{random} module and print a random number in the range $1\dots6$.
+ \item Import \texttt{antigravity}.
+
+
+\textit{Hint:} \url{http://xkcd.com/353/}
+\end{enumerate}
+
 \end{document}
