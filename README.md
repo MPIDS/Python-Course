@@ -7,7 +7,8 @@ This course is given at the Max-Planck-Institute for Dynamics and
 Self-Organization in Goettingen, Germany every year. 
 
 
-* April 2014
+# April 2014
+
 ## Topics covered
 
 1. Introduction to Python Programming <david@nld.ds.mpg.de>
@@ -18,7 +19,7 @@ Self-Organization in Goettingen, Germany every year.
 
 
 
-* April, 2012 
+# April, 2012 
 
 ## Topics covered
 
