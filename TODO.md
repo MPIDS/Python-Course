@@ -10,6 +10,11 @@
     - pandas
     - .... feel free to add your requirements ....
 
+  Suggested or topical (topical not needed unless interested):
+    - Spyder (IDE/Editor)
+    - nose (to run tests)
+    - PySide (topical: Gui Programming)
+    - Cython (topical: C-interface/performance)
 
 2. We make sure all the packages in (1.) can be installed in:
     - Linux (?)
