@@ -19,7 +19,7 @@
 
 #A.2 Course contents changes:
 
-1. Update the github repository with new contents. Debsankha creates a "release" zip of the current version.
+1. Update the github repository with new contents. Debsankha created a ["release" zip](https://github.com/MPIDS/Python-Course/releases) of the current version. But the source document to many exercises and talks (.tex or .odf) are missing. 
 
 2. Convert exerciuses into ipython notebook format. To be done by:
     - Introduction I (Alex)
