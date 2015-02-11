@@ -3,3 +3,4 @@
 *.bbl
 *.swp
 *.swo
+*/.ipynb_checkpoints/*
