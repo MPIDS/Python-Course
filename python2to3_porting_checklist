@@ -1,0 +1,3 @@
+print statement is now a function
+__cmp__ gone, use __lt__ instead
+
