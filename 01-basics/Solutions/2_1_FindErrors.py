@@ -9,4 +9,4 @@ def compute(n):
     return s/n
 
 n = int(sys.argv[1])
-print 'the average of %d random numbers is %g' % (n, compute(n))
+print('the average of %d random numbers is %g' % (n, compute(n)))
