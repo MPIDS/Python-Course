@@ -1,6 +1,11 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import sys, random
+
+print("TEST", sys.argv)
+
+print(sys.argv[10])
+
 def compute(n):
     i = 0; s = 0
     while i < n:

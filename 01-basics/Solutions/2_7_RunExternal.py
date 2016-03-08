@@ -1,21 +1,16 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import subprocess as sp
-
-# note: script you call must be executable otherwise an error will be raised
-# use strip() to remove the newline character \n
-script_result =  sp.check_output(['./2_7_Dice.py', '5', '1000']).strip()
-
-# Run external script - Part 3
 from sys import argv
 import os
+
 # remove csv-file if already existing to save only new experiments
 if os.path.isfile('DiceExperiment_Results.csv'):
     os.remove('DiceExperiment_Results.csv')
     
 # Check if 2 arguments are passed, otherwise stop execution
 # note that first argument is always the script name thus in total there are 3 arguments
-assert(len(argv) == 3)
+assert len(argv) == 3, "usage \n$ python runexternal.py N=1:5 n=100:1000:10000"
 
 arg1, arg2 = argv[1:]
 print arg1 + " aha" + arg2
