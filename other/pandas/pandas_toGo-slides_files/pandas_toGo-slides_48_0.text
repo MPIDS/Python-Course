@@ -1,0 +1,28 @@
+                          recordist        date   time  \
+climate                                                  
+tropical    0           Daniel Lane  2011-02-24  05:55   
+            1           Daniel Lane  2011-02-24  06:05   
+            2          Eric DeFonso  2011-09-03  18:00   
+subtropical 86    Adrian Eisen Rupp  2009-09-30      ?   
+            87  Bernabe Lopez-Lanus  2007-07-07    ?:?   
+            88        Frank Lambert  1997-12-17    ?:?   
+
+                                                      location  longitude  \
+climate                                                                     
+tropical    0   10 km S Pocone on Transpantaneira, Mato Grosso -56.648000   
+            1   10 km S Pocone on Transpantaneira, Mato Grosso -56.648000   
+            2                     Pantanal Wildlife Center, MT -56.876400   
+subtropical 86       FLONA de Chapecó, Guatambu, Sana Catarina -52.778000   
+            87                  SF de Paula, Rio Grande do Sul -50.583889   
+            88                    Santa Catarina, near Urubici -49.580000   
+
+                 latitude elevation      climate  
+climate                                           
+tropical    0  -16.362000       115     tropical  
+            1  -16.362000       115     tropical  
+            2  -16.758100       110     tropical  
+subtropical 86 -27.100000       573  subtropical  
+            87 -29.447778         ?  subtropical  
+            88 -27.830000      1000  subtropical  
+
+[6 rows x 8 columns]

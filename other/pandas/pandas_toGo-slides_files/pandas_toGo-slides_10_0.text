@@ -1,0 +1,22 @@
+      recordist        date   time  \
+0   Daniel Lane  2011-02-24  05:55   
+1   Daniel Lane  2011-02-24  06:05   
+2  Eric DeFonso  2011-09-03  18:00   
+3  Eric DeFonso  2011-09-04  06:00   
+4  Eric DeFonso  2011-09-04  06:05   
+
+                                         location  longitude  latitude  \
+0  10 km S Pocone on Transpantaneira, Mato Grosso   -56.6480  -16.3620   
+1  10 km S Pocone on Transpantaneira, Mato Grosso   -56.6480  -16.3620   
+2                    Pantanal Wildlife Center, MT   -56.8764  -16.7581   
+3                    Pantanal Wildlife Center, MT   -56.8764  -16.7581   
+4                    Pantanal Wildlife Center, MT   -56.8764  -16.7581   
+
+  elevation  
+0       115  
+1       115  
+2       110  
+3       110  
+4       110  
+
+[5 rows x 7 columns]

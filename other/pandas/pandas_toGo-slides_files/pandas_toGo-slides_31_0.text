@@ -1,0 +1,11 @@
+       recordist        date   time                 location  longitude  \
+8   Jeremy Minns  2002-09-26  17:30  Anavilhanas Archipelago   -60.7501   
+9   Jeremy Minns  2002-09-27  15:00           Rio Caurés, AM   -62.2167   
+10  Jeremy Minns  2002-09-27  15:50           Rio Caurés, AM   -62.2167   
+
+    latitude elevation  
+8    -2.6834        21  
+9    -1.2667        21  
+10   -1.2667        21  
+
+[3 rows x 7 columns]

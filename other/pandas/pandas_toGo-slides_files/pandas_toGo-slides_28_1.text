@@ -1,0 +1,16 @@
+                    recordist        date   time  \
+8268             Jeremy Minns  2000-12-03  10:51   
+8364  Thiago Orsi Laranjeiras  2012-11-07  18:00   
+8574  Thiago Orsi Laranjeiras  2009-08-26  08:30   
+
+                                               location  longitude  latitude  \
+8268                  Porto Grande, AP. Hotel Sonho Meu   -51.4834    0.6834   
+8364  Estrada Perdida, Parque Nacional do Viruá, Car...   -60.9869    1.4022   
+8574  Trilha do Buritizal - Serra do Viruá - Parque ...   -60.9891    1.4829   
+
+     elevation  
+8268        60  
+8364        50  
+8574        90  
+
+[3 rows x 7 columns]
