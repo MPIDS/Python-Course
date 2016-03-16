@@ -1,0 +1,1614 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass{article}
+
+    
+    
+    \usepackage{graphicx} % Used to insert images
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{color} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage{ulem} % ulem is needed to support strikethroughs (\sout)
+    
+
+    
+    
+    \definecolor{orange}{cmyk}{0,0.4,0.8,0.2}
+    \definecolor{darkorange}{rgb}{.71,0.21,0.01}
+    \definecolor{darkgreen}{rgb}{.12,.54,.11}
+    \definecolor{myteal}{rgb}{.26, .44, .56}
+    \definecolor{gray}{gray}{0.45}
+    \definecolor{lightgray}{gray}{.95}
+    \definecolor{mediumgray}{gray}{.8}
+    \definecolor{inputbackground}{rgb}{.95, .95, .85}
+    \definecolor{outputbackground}{rgb}{.95, .95, .95}
+    \definecolor{traceback}{rgb}{1, .95, .95}
+    % ansi colors
+    \definecolor{red}{rgb}{.6,0,0}
+    \definecolor{green}{rgb}{0,.65,0}
+    \definecolor{brown}{rgb}{0.6,0.6,0}
+    \definecolor{blue}{rgb}{0,.145,.698}
+    \definecolor{purple}{rgb}{.698,.145,.698}
+    \definecolor{cyan}{rgb}{0,.698,.698}
+    \definecolor{lightgray}{gray}{0.5}
+    
+    % bright ansi colors
+    \definecolor{darkgray}{gray}{0.25}
+    \definecolor{lightred}{rgb}{1.0,0.39,0.28}
+    \definecolor{lightgreen}{rgb}{0.48,0.99,0.0}
+    \definecolor{lightblue}{rgb}{0.53,0.81,0.92}
+    \definecolor{lightpurple}{rgb}{0.87,0.63,0.87}
+    \definecolor{lightcyan}{rgb}{0.5,1.0,0.83}
+    
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Slides: Introduction I }
+    \author{Florencia Noriega}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=blue,
+      linkcolor=darkorange,
+      citecolor=darkgreen,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    \author
+    
+    
+
+    
+    Start slide show with: \$ ipython nbconvert --to slides --post serve
+01\_introduction\_i\_slides.ipynb
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kn}{from} \PY{n+nn}{\PYZus{}\PYZus{}future\PYZus{}\PYZus{}} \PY{k+kn}{import} \PY{n}{print\PYZus{}function}\PY{p}{,} \PY{n}{division} \PY{c}{\PYZsh{} if using python 2}
+\end{Verbatim}
+
+    \section{Introduction to Python}\label{introduction-to-python}
+
+
+Highly adapted from: \href{http://www.cs.sandia.gov/~rmuller/}{Rick
+Muller}, \href{http://nbviewer.jupyter.org/gist/rpmuller/5920182}{A
+Crash Course in Python for Scientists}
+
+\noindent
+\href{http://creativecommons.org/licenses/by-sa/3.0/deed.en_US}{Creative
+Commons Attribution-ShareAlike 3.0 Unported License}.
+
+    \subsection{Why Python?}\label{why-python}
+
+\begin{itemize}
+\item
+  well documented
+\item
+  used by a large and growing number scientists
+\item
+  runs almost everywhere
+\end{itemize}
+
+    \begin{itemize}
+\item
+  is open
+\item
+  plays well with others
+\end{itemize}
+
+    \subsection{About python}\label{about-python}
+
+\begin{itemize}
+\item
+  mature language, first released in 1991 by Guido van Rossum
+
+  \begin{itemize}
+  \item
+    python 2 (2000)
+  \item
+    python 3 (2008)
+  \end{itemize}
+\item
+  emphasizes readability
+
+  \begin{itemize}
+  \item
+    identation structure, instead of braces
+  \item
+    simple English keywords, instead of punctuations
+  \end{itemize}
+\item
+  python is fun
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    \href{https://www.python.org/doc/humor/}{Python Humor}
+  \end{itemize}
+\end{itemize}
+
+    picture taken from
+\href{http://www.pbs.org/montypython/bios.html}{www.pbs.org}
+
+    \subsubsection{python 2 and python 3}\label{python-2-and-python-3}
+
+\begin{itemize}
+\item
+  \texttt{/} is no longer floor division (\texttt{//})
+  \texttt{from \_\_future\_\_ import division}
+\item
+  print function \texttt{print\_function}
+\item
+  \texttt{raw\_input()} was renamed as \texttt{input()}
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    the old \texttt{input()} was removed, instead use:
+    \texttt{eval(input())}
+  \end{itemize}
+\end{itemize}
+
+\href{http://python-future.org/compatible_idioms.html}{Write compatible
+code}
+
+    \section{Getting started: variables}\label{getting-started-variables}
+
+    \subsection{Using Python as a
+calculator}\label{using-python-as-a-calculator}
+
+    Many of the things I used to use a calculator for, I now use Python for:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{l+m+mi}{2}\PY{o}{+}\PY{l+m+mi}{2}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}2}]:} 4
+\end{Verbatim}
+        
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{p}{(}\PY{l+m+mi}{50}\PY{o}{\PYZhy{}}\PY{l+m+mi}{5}\PY{o}{*}\PY{l+m+mi}{6}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{4}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}3}]:} 5.0
+\end{Verbatim}
+        
+    \subsubsection{Arithmetic operators}\label{arithmetic-operators}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule\addlinespace
+Symbol & Task Performed
+\\\addlinespace
+\midrule\endhead
++ & Addition
+\\\addlinespace
+- & Subtraction
+\\\addlinespace
+/ & division
+\\\addlinespace
+\% & mod
+\\\addlinespace
+* & multiplication
+\\\addlinespace
+// & floor division
+\\\addlinespace
+** & to the power of
+\\\addlinespace
+\bottomrule
+\end{longtable}
+
+    import the math library
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kn}{import} \PY{n+nn}{math}
+        \PY{n}{math}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{81}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}1}]:} 9.0
+\end{Verbatim}
+        
+    You can define variables using the equals (=) sign:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{width} \PY{o}{=} \PY{l+m+mi}{20}
+        \PY{n}{length} \PY{o}{=} \PY{l+m+mi}{30}
+        \PY{n}{area} \PY{o}{=} \PY{n}{length}\PY{o}{*}\PY{n}{width}
+        \PY{n}{area}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}2}]:} 600
+\end{Verbatim}
+        
+    If you try to access a variable that you haven't yet defined, you get an
+error:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{volume}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+        ---------------------------------------------------------------------------
+
+        NameError                                 Traceback (most recent call last)
+
+        <ipython-input-3-0c7fc58f9268> in <module>()
+    ----> 1 volume
+    
+
+        NameError: name 'volume' is not defined
+
+    \end{Verbatim}
+
+    and you need to define it:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{depth} \PY{o}{=} \PY{l+m+mi}{10}
+        \PY{n}{volume} \PY{o}{=} \PY{n}{area}\PY{o}{*}\PY{n}{depth}
+        \PY{n}{volume}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}4}]:} 6000
+\end{Verbatim}
+        
+    You can name a variable \emph{almost} anything you want. It needs to
+start with an alphabetical character or ``\_'', can contain alphanumeric
+charcters plus underscores (``\_''). Certain words, however, are
+reserved for the language:
+
+\begin{verbatim}
+and, as, assert, break, class, continue, def, del, elif, else, except, 
+exec, finally, for, from, global, if, import, in, is, lambda, not, or,
+pass, print, raise, return, try, while, with, yield
+\end{verbatim}
+
+Trying to define a variable using one of these will result in a syntax
+error:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{k}{return} \PY{o}{=} \PY{l+m+mi}{0}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+          File "<ipython-input-5-2b99136d4ec6>", line 1
+        return = 0
+               \^{}
+    SyntaxError: invalid syntax
+
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{whos}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Variable   Type      Data/Info
+------------------------------
+area       int       600
+depth      int       10
+length     int       30
+math       module    <module 'math' (built-in)>
+volume     int       6000
+width      int       20
+    \end{Verbatim}
+
+    \subsection{Strings}\label{strings}
+
+    \emph{Strings} are lists of printable characters, and can be defined
+using either single quotes
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{l+s}{\PYZsq{}}\PY{l+s}{Hello, World!}\PY{l+s}{\PYZsq{}}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}10}]:} 'Hello, World!'
+\end{Verbatim}
+        
+    or double quotes
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{l+s}{\PYZdq{}}\PY{l+s}{Hello, World!}\PY{l+s}{\PYZdq{}}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}11}]:} 'Hello, World!'
+\end{Verbatim}
+        
+    But not both at the same time, unless you want one of the symbols to be
+part of the string.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{l+s}{\PYZdq{}}\PY{l+s}{He}\PY{l+s}{\PYZsq{}}\PY{l+s}{s a Rebel}\PY{l+s}{\PYZdq{}}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}12}]:} "He's a Rebel"
+\end{Verbatim}
+        
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{l+s}{\PYZsq{}}\PY{l+s}{She asked, }\PY{l+s}{\PYZdq{}}\PY{l+s}{How are you today?}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZsq{}}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}13}]:} 'She asked, "How are you today?"'
+\end{Verbatim}
+        
+    Just like the other two data objects we're familiar with (ints and
+floats), you can assign a string to a variable
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{greeting} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{Hello, World!}\PY{l+s}{\PYZdq{}}
+\end{Verbatim}
+
+    The \textbf{print} function is often used for printing character
+strings:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{k}{print}\PY{p}{(}\PY{n}{greeting}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Hello, World!
+    \end{Verbatim}
+
+    You can use the + operator to concatenate strings together:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{n}{statement} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{Hello,}\PY{l+s}{\PYZdq{}} \PY{o}{+} \PY{l+s}{\PYZdq{}}\PY{l+s}{World!}\PY{l+s}{\PYZdq{}}
+         \PY{k}{print}\PY{p}{(}\PY{n}{statement}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Hello,World!
+    \end{Verbatim}
+
+    Don't forget the space between the strings, if you want one there.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{n}{statement} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{Hello, }\PY{l+s}{\PYZdq{}} \PY{o}{+} \PY{l+s}{\PYZdq{}}\PY{l+s}{World!}\PY{l+s}{\PYZdq{}}
+         \PY{k}{print}\PY{p}{(}\PY{n}{statement}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Hello, World!
+    \end{Verbatim}
+
+    You can use + to concatenate multiple strings in a single statement:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{k}{print}\PY{p}{(} \PY{l+s}{\PYZdq{}}\PY{l+s}{This }\PY{l+s}{\PYZdq{}} \PY{o}{+} \PY{l+s}{\PYZdq{}}\PY{l+s}{is }\PY{l+s}{\PYZdq{}} \PY{o}{+} \PY{l+s}{\PYZdq{}}\PY{l+s}{a }\PY{l+s}{\PYZdq{}} \PY{o}{+} \PY{l+s}{\PYZdq{}}\PY{l+s}{longer }\PY{l+s}{\PYZdq{}} \PY{o}{+} \PY{l+s}{\PYZdq{}}\PY{l+s}{statement.}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+This is a longer statement.
+    \end{Verbatim}
+
+    If you have a lot of words to concatenate together, there are other,
+more efficient ways to do this. But this is fine for linking a few
+strings together.
+
+    It can also print data types other than strings:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{k}{print}\PY{p}{(} \PY{l+s}{\PYZdq{}}\PY{l+s}{The area is \PYZob{}\PYZcb{}}\PY{l+s}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{area}\PY{p}{)}\PY{p}{)}
+         \PY{k}{print}\PY{p}{(} \PY{l+s}{\PYZdq{}}\PY{l+s}{The area is \PYZob{}0:.1f\PYZcb{}}\PY{l+s}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{area}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The area is 600
+The area is 600.0
+    \end{Verbatim}
+
+    In the above snipped, the number 600 (stored in the variable ``area'')
+is converted into a string before being printed out.
+
+    \subsection{Lists}\label{lists}
+
+Very often in a programming language, one wants to keep a group of
+similar items together. Python does this using a data type called
+\textbf{lists}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{n}{days\PYZus{}of\PYZus{}the\PYZus{}week} \PY{o}{=} \PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{Monday}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{Tuesday}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{Wednesday}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{Thursday}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{Friday}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{Saturday}\PY{l+s}{\PYZdq{}}\PY{p}{]}
+\end{Verbatim}
+
+    You can access members of the list using the \textbf{index} of that
+item:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{n}{days\PYZus{}of\PYZus{}the\PYZus{}week}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}21}]:} 'Wednesday'
+\end{Verbatim}
+        
+    Python lists, like C, but unlike Fortran, use 0 as the index of the
+first element of a list. Thus, in this example, the 0 element is
+``Sunday'', 1 is ``Monday'', and so on. If you need to access the
+\emph{n}th element from the end of the list, you can use a negative
+index. For example, the -1 element of a list is the last element:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{n}{days\PYZus{}of\PYZus{}the\PYZus{}week}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}22}]:} 'Saturday'
+\end{Verbatim}
+        
+    You can add additional items to the list using the .append() command:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}23}]:} \PY{n}{days\PYZus{}of\PYZus{}the\PYZus{}week}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Sunday}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{k}{print}\PY{p}{(}\PY{n}{days\PYZus{}of\PYZus{}the\PYZus{}week}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    \end{Verbatim}
+
+    The \textbf{range()} command is a convenient way to make sequential
+lists of numbers:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}24}]:} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}24}]:} [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+\end{Verbatim}
+        
+    Note that range(n) starts at 0 and gives the sequential list of integers
+less than n. If you want to start at a different number, use
+range(start,stop)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{8}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}25}]:} [2, 3, 4, 5, 6, 7]
+\end{Verbatim}
+        
+    The lists created above with range have a \emph{step} of 1 between
+elements. You can also give a fixed step size via a third command:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}26}]:} \PY{n}{evens} \PY{o}{=} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}
+         \PY{n}{evens}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}26}]:} [0, 2, 4, 6, 8, 10, 12, 14, 16, 18]
+\end{Verbatim}
+        
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}27}]:} \PY{n}{evens}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}27}]:} 6
+\end{Verbatim}
+        
+    Lists do not have to hold the same data type. For example,
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} \PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{Today}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+m+mi}{7}\PY{p}{,}\PY{l+m+mf}{99.3}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZdq{}}\PY{p}{]}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}28}]:} ['Today', 7, 99.3, '']
+\end{Verbatim}
+        
+    However, it's good (but not essential) to use lists for similar objects
+that are somehow logically connected. If you want to group different
+data types together into a composite data object, it's best to use
+\textbf{tuples}, which we will learn about below.
+
+    You can find out how long a list is using the \textbf{len()} command:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}29}]:} \PY{n}{help}\PY{p}{(}\PY{n+nb}{len}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Help on built-in function len in module \_\_builtin\_\_:
+
+len({\ldots})
+    len(object) -> integer
+    
+    Return the number of items of a sequence or mapping.
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}30}]:} \PY{n+nb}{len}\PY{p}{(}\PY{n}{evens}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}30}]:} 10
+\end{Verbatim}
+        
+    \section{Repeating Actions with Loops: Iteration, Indentation, and
+blocks}\label{repeating-actions-with-loops-iteration-indentation-and-blocks}
+
+    One of the most useful things you can do with lists is to \emph{iterate}
+through them, i.e.~to go through each element one at a time. To do this
+in Python, we use the \textbf{for} statement:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}31}]:} \PY{k}{for} \PY{n}{day} \PY{o+ow}{in} \PY{n}{days\PYZus{}of\PYZus{}the\PYZus{}week}\PY{p}{:}
+             \PY{k}{print}\PY{p}{(}\PY{n}{day}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Monday
+Tuesday
+Wednesday
+Thursday
+Friday
+Saturday
+Sunday
+    \end{Verbatim}
+
+    This code snippet goes through each element of the list called
+\textbf{days\_of\_the\_week} and assigns it to the variable
+\textbf{day}. It then executes everything in the indented block (in this
+case only one line of code, the print statement) using those variable
+assignments. When the program has gone through every element of the
+list, it exists the block.
+
+(Almost) every programming language defines blocks of code in some way.
+In Fortran, one uses END statements (ENDDO, ENDIF, etc.) to define code
+blocks. In C, C++, and Perl, one uses curly braces \{\} to define these
+blocks.
+
+Python uses a colon (``:''), followed by indentation level to define
+code blocks. Everything at a higher level of indentation is taken to be
+in the same block. In the above example the block was only a single
+line, but we could have had longer blocks as well:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}32}]:} \PY{k}{for} \PY{n}{day} \PY{o+ow}{in} \PY{n}{days\PYZus{}of\PYZus{}the\PYZus{}week}\PY{p}{:}
+             \PY{n}{statement} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{Today is }\PY{l+s}{\PYZdq{}} \PY{o}{+} \PY{n}{day}
+             \PY{k}{print}\PY{p}{(} \PY{n}{statement} \PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Today is Monday
+Today is Tuesday
+Today is Wednesday
+Today is Thursday
+Today is Friday
+Today is Saturday
+Today is Sunday
+    \end{Verbatim}
+
+    The \textbf{range()} command is particularly useful with the
+\textbf{for} statement to execute loops of a specified length:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}33}]:} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{)}\PY{p}{:}
+             \PY{k}{print}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{The square of }\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{n}{i}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{ is }\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{n}{i}\PY{o}{*}\PY{n}{i}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The square of  0  is  0
+The square of  1  is  1
+The square of  2  is  4
+The square of  3  is  9
+The square of  4  is  16
+The square of  5  is  25
+The square of  6  is  36
+The square of  7  is  49
+The square of  8  is  64
+The square of  9  is  81
+The square of  10  is  100
+The square of  11  is  121
+The square of  12  is  144
+The square of  13  is  169
+The square of  14  is  196
+The square of  15  is  225
+The square of  16  is  256
+The square of  17  is  289
+The square of  18  is  324
+The square of  19  is  361
+    \end{Verbatim}
+
+    Lists and strings have something in common that you might not suspect:
+they can both be treated as sequences, i.e. you can iterate through its
+elements.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}34}]:} \PY{k}{for} \PY{n}{letter} \PY{o+ow}{in} \PY{l+s}{\PYZdq{}}\PY{l+s}{Sunday}\PY{l+s}{\PYZdq{}}\PY{p}{:}
+             \PY{k}{print}\PY{p}{(}\PY{n}{letter}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+S
+u
+n
+d
+a
+y
+    \end{Verbatim}
+
+    \subsection{Slicing \texttt{{[}:{]}}}\label{slicing}
+
+    A useful way to iterate over the elements of a sequence is by using
+\textbf{\texttt{{[}:{]}}}. We already know that we can use
+\emph{indexing} to get the first element of a list:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}35}]:} \PY{n}{days\PYZus{}of\PYZus{}the\PYZus{}week}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}35}]:} 'Monday'
+\end{Verbatim}
+        
+    If we want the list containing the first two elements of a list, we can
+do this via
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}36}]:} \PY{n}{days\PYZus{}of\PYZus{}the\PYZus{}week}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{2}\PY{p}{]}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}36}]:} ['Monday', 'Tuesday']
+\end{Verbatim}
+        
+    or simply
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}37}]:} \PY{n}{days\PYZus{}of\PYZus{}the\PYZus{}week}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{2}\PY{p}{]}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}37}]:} ['Monday', 'Tuesday']
+\end{Verbatim}
+        
+    If we want the last items of the list, we can do this with negative
+slicing:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}38}]:} \PY{n}{days\PYZus{}of\PYZus{}the\PYZus{}week}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{:}\PY{p}{]}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}38}]:} ['Saturday', 'Sunday']
+\end{Verbatim}
+        
+    which is somewhat logically consistent with negative indices accessing
+the last elements of the list.
+
+You can do:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}39}]:} \PY{n}{workdays} \PY{o}{=} \PY{n}{days\PYZus{}of\PYZus{}the\PYZus{}week}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{l+m+mi}{6}\PY{p}{]}
+         \PY{k}{print}\PY{p}{(}\PY{n}{workdays}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+['Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+    \end{Verbatim}
+
+    Since strings are sequences, you can also do this to them:
+
+\emph{exercise!}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}40}]:} \PY{n}{day} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{Sunday}\PY{l+s}{\PYZdq{}}
+         \PY{n}{abbreviation} \PY{o}{=} \PY{n}{day}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{3}\PY{p}{]}
+         \PY{k}{print}\PY{p}{(}\PY{n}{abbreviation}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Sun
+    \end{Verbatim}
+
+    If we really want to get fancy, we can pass a third element into the
+slice, which specifies a step length (just like a third argument to the
+\textbf{range()} function specifies the step):
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}41}]:} \PY{n}{numbers} \PY{o}{=} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{40}\PY{p}{)}
+         \PY{n}{evens} \PY{o}{=} \PY{n}{numbers}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{:}\PY{p}{:}\PY{l+m+mi}{2}\PY{p}{]}
+         \PY{n}{evens}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}41}]:} [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38]
+\end{Verbatim}
+        
+    Note that in this example I was even able to omit the second argument,
+so that the slice started at 2, went to the end of the list, and took
+every second element, to generate the list of even numbers less that 40.
+
+    \section{Making choices}\label{making-choices}
+
+True, False, conditions and control statements (\emph{if}, \emph{while})
+
+    \subsection{\texttt{True}, \texttt{False}}\label{true-false}
+
+\texttt{False}: zero, None, empty container or object
+
+\texttt{True}: non-zero numbers, non-empty objects
+
+\subsection{Boolean logic}\label{boolean-logic}
+
+\begin{longtable}[c]{@{}lc@{}}
+\toprule\addlinespace
+Operator & True, if
+\\\addlinespace
+\midrule\endhead
+a and b & a and b are True
+\\\addlinespace
+a or b & a or b (or both) are True
+\\\addlinespace
+not a & a is False
+\\\addlinespace
+\bottomrule
+\end{longtable}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}42}]:} \PY{n}{name} \PY{o}{=} \PY{l+s}{\PYZsq{}}\PY{l+s}{Bob}\PY{l+s}{\PYZsq{}}
+         \PY{n}{age} \PY{o}{=} \PY{l+m+mi}{98}
+         \PY{k}{print}\PY{p}{(} \PY{n}{name}\PY{o}{==}\PY{l+s}{\PYZsq{}}\PY{l+s}{bob}\PY{l+s}{\PYZsq{}} \PY{o+ow}{and} \PY{n}{age}\PY{o}{\PYZlt{}}\PY{l+m+mi}{99}\PY{p}{)}
+         \PY{k}{print}\PY{p}{(} \PY{n}{age} \PY{o}{\PYZlt{}} \PY{l+m+mi}{99} \PY{o+ow}{and} \PY{p}{(}\PY{n}{age} \PY{o}{\PYZgt{}} \PY{l+m+mi}{1} \PY{o+ow}{or} \PY{n}{name}\PY{o}{==}\PY{l+s}{\PYZsq{}}\PY{l+s}{bob}\PY{l+s}{\PYZsq{}}\PY{p}{)} \PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+False
+True
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}43}]:} \PY{l+m+mi}{10} \PY{o+ow}{and} \PY{l+m+mf}{1.2} \PY{o+ow}{and} \PY{l+m+mi}{3} 
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}43}]:} 3
+\end{Verbatim}
+        
+    \subsubsection{Comparison operators}\label{comparison-operators}
+
+\begin{longtable}[c]{@{}lc@{}}
+\toprule\addlinespace
+Operator & True, if
+\\\addlinespace
+\midrule\endhead
+a == b & a equals b
+\\\addlinespace
+a \textgreater{} b & a is larger than b
+\\\addlinespace
+a \textless{} b & a is smaller than b
+\\\addlinespace
+a \textgreater{}= b & a is larger than b or equals b
+\\\addlinespace
+a \textless{}= b & a is smaller than b or equals b
+\\\addlinespace
+a != b & a and b are unequal
+\\\addlinespace
+a is b & a is the same object as b
+\\\addlinespace
+a is not b & a is not the same object as b
+\\\addlinespace
+\bottomrule
+\end{longtable}
+
+    We see a few other boolean operators here, all of which should be
+self-explanatory. Less than, equality, non-equality, and so on.
+
+Particularly interesting is the 1 == 1.0 test, which is true, since even
+though the two objects are different data types (integer and floating
+point number), they have the same \emph{value}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}44}]:} \PY{l+m+mi}{1} \PY{o}{==} \PY{l+m+mf}{1.0}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}44}]:} True
+\end{Verbatim}
+        
+    \texttt{is}, tests whether two objects are the same object:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}45}]:} \PY{l+m+mi}{1} \PY{o+ow}{is} \PY{l+m+mf}{1.0}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}45}]:} False
+\end{Verbatim}
+        
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}46}]:} \PY{l+m+mi}{1} \PY{o}{!=} \PY{l+m+mi}{0}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}46}]:} True
+\end{Verbatim}
+        
+    In addition to int and float, many other data types can be compared as
+well:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}47}]:} \PY{k}{print}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{color}\PY{l+s}{\PYZsq{}} \PY{o}{==} \PY{l+s}{\PYZsq{}}\PY{l+s}{color}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{k}{print}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{color}\PY{l+s}{\PYZsq{}} \PY{o}{!=} \PY{l+s}{\PYZsq{}}\PY{l+s}{colour}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+True
+True
+    \end{Verbatim}
+
+    \subsubsection{If \ldots{} else \ldots{}}\label{if-else}
+
+\begin{verbatim}
+number_of_people = 3
+
+if number_of_people < 5:
+    print('Sorry, you need five or more people to play this game.')
+\end{verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}48}]:} \PY{n}{number\PYZus{}of\PYZus{}people} \PY{o}{=} \PY{l+m+mi}{3}
+         
+         \PY{k}{if} \PY{n}{number\PYZus{}of\PYZus{}people} \PY{o}{\PYZlt{}} \PY{l+m+mi}{5}\PY{p}{:}
+             \PY{k}{print}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Sorry, you need five or more people to play this game.}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Sorry, you need five or more people to play this game.
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}49}]:} \PY{n}{number\PYZus{}of\PYZus{}people} \PY{o}{=} \PY{l+m+mi}{6}
+         
+         \PY{k}{if} \PY{n}{number\PYZus{}of\PYZus{}people} \PY{o}{\PYZlt{}} \PY{l+m+mi}{5}\PY{p}{:}
+             \PY{k}{print}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Not enough people to play this game.}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{k}{else}\PY{p}{:}
+             \PY{k}{print}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Thats enough. Enjoy!}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Thats enough. Enjoy!
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}50}]:} \PY{n}{number\PYZus{}of\PYZus{}people} \PY{o}{=} \PY{l+m+mi}{6}
+         
+         \PY{k}{if} \PY{n}{number\PYZus{}of\PYZus{}people} \PY{o}{\PYZlt{}} \PY{l+m+mi}{5}\PY{p}{:}
+             \PY{k}{print}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Not enough people to play this game.}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{k}{elif} \PY{n}{number\PYZus{}of\PYZus{}people} \PY{o}{\PYZlt{}} \PY{l+m+mi}{10}\PY{p}{:}
+             \PY{k}{print}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{More would be better, but it}\PY{l+s}{\PYZsq{}}\PY{l+s}{s sufficient.}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{k}{elif} \PY{n}{number\PYZus{}of\PYZus{}people} \PY{o}{\PYZlt{}} \PY{l+m+mi}{20}\PY{p}{:}
+             \PY{k}{print}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Perfect! Enjoy!}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{k}{elif} \PY{n}{number\PYZus{}of\PYZus{}people} \PY{o}{\PYZlt{}} \PY{l+m+mi}{30}\PY{p}{:}
+             \PY{k}{print}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Less would be better, but it will work somehow.}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{k}{else}\PY{p}{:}
+             \PY{k}{print}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Sorry, but more than 30 is too much.}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+More would be better, but it's sufficient.
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}51}]:} \PY{n}{x} \PY{o}{=} \PY{l+m+mi}{12}
+         
+         \PY{c}{\PYZsh{}the long version:}
+         \PY{k}{if} \PY{n}{x}\PY{o}{\PYZpc{}}\PY{k}{2}==0:
+             \PY{n}{message} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{Even.}\PY{l+s}{\PYZdq{}}
+         \PY{k}{else}\PY{p}{:}
+             \PY{n}{message} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{Odd.}\PY{l+s}{\PYZdq{}}
+         \PY{k}{print}\PY{p}{(}\PY{n}{message}\PY{p}{)}
+         
+         \PY{c}{\PYZsh{}the short version:}
+         \PY{k}{print}\PY{p}{(} \PY{l+s}{\PYZdq{}}\PY{l+s}{Even.}\PY{l+s}{\PYZdq{}} \PY{k}{if} \PY{n}{x}\PY{o}{\PYZpc{}}\PY{k}{2}==0 else \PYZdq{}Odd.\PYZdq{} ) 
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Even.
+Even.
+    \end{Verbatim}
+
+    \subsubsection{While}\label{while}
+
+loop while the condition is True:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}52}]:} \PY{n}{value} \PY{o}{=} \PY{l+m+mi}{17}
+         
+         \PY{k}{while} \PY{n}{value} \PY{o}{\PYZlt{}} \PY{l+m+mi}{21}\PY{p}{:}
+             \PY{k}{print}\PY{p}{(}\PY{n}{value}\PY{p}{)}
+             \PY{n}{value} \PY{o}{=} \PY{n}{value} \PY{o}{+} \PY{l+m+mi}{1}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+17
+18
+19
+20
+    \end{Verbatim}
+
+    We can control the information flow with the statements: *
+\textbf{\texttt{break}}, breaks the loop * \textbf{\texttt{continue}},
+continues with the next iteration
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}53}]:} \PY{n}{value} \PY{o}{=} \PY{l+m+mi}{17}
+         \PY{n}{max\PYZus{}value} \PY{o}{=} \PY{l+m+mi}{30}
+         
+         \PY{k}{while} \PY{n+nb+bp}{True}\PY{p}{:}
+             \PY{n}{value} \PY{o}{=} \PY{n}{value} \PY{o}{+} \PY{l+m+mi}{1}
+             \PY{k}{if} \PY{n}{value} \PY{o}{\PYZgt{}} \PY{n}{max\PYZus{}value}\PY{p}{:}
+                 \PY{k}{break}              \PY{c}{\PYZsh{}stop here and escape the while loop}
+             \PY{k}{elif} \PY{n}{value}\PY{o}{\PYZpc{}}\PY{k}{2}==0:
+                 \PY{k}{continue}           \PY{c}{\PYZsh{}stop here and continue the while loop}
+             \PY{k}{print}\PY{p}{(}\PY{n}{value}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+19
+21
+23
+25
+27
+29
+    \end{Verbatim}
+
+    \textbf{Example of really bad code: }
+
+\begin{verbatim}
+value = 0
+increment = 3 
+
+while not value == 100:
+    value = value + increment
+\end{verbatim}
+
+Finishes if \texttt{increment = 1 or 2}\\but if
+i\texttt{ncrement = 0 or 3}, the program is trapped in an infinite loop.
+To stop it click on \emph{interrupt kernel}
+
+    ** Exercise:** Find the smallest Fibonacci number which is bigger than
+1000000.
+
+Definition of Fibonacci numbers: $F_0=0$, $F_1=1$ and
+$F_n=F_{n-1}+F_{n-2}$
+
+The first few numbers are: \{0 , 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89,
+144, \ldots{}\}
+
+    \section{Two more data structures: Tuples and
+Dictionaries}\label{two-more-data-structures-tuples-and-dictionaries}
+
+    \subsection{Tuple}\label{tuple}
+
+\begin{itemize}
+\item
+  sequence object like a list or a string
+\item
+  constructed by grouping a sequence of objects together with commas,
+  either without brackets, or with parentheses:
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}54}]:} \PY{n}{t} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{hi}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{l+m+mf}{9.0}\PY{p}{)}
+         \PY{n}{t}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}54}]:} (1, 2, 'hi', 9.0)
+\end{Verbatim}
+        
+    Tuples are like lists, in that you can access the elements using
+indices:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}55}]:} \PY{n}{t}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}55}]:} 2
+\end{Verbatim}
+        
+    However, tuples are \emph{immutable}, once created you can't modify
+them:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}56}]:} \PY{n}{t}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{=}\PY{l+m+mi}{77}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+        ---------------------------------------------------------------------------
+
+        TypeError                                 Traceback (most recent call last)
+
+        <ipython-input-56-03cc8ba9c07d> in <module>()
+    ----> 1 t[1]=77
+    
+
+        TypeError: 'tuple' object does not support item assignment
+
+    \end{Verbatim}
+
+    Tuples are useful anytime you want to group different pieces of data
+together in an object, but don't want to create a full-fledged class
+(see below) for them. For example, let's say you want the Cartesian
+coordinates of some objects in your program. Tuples are a good way to do
+this:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}57}]:} \PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Bob}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{l+m+mf}{0.0}\PY{p}{,}\PY{l+m+mf}{21.0}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}57}]:} ('Bob', 0.0, 21.0)
+\end{Verbatim}
+        
+    The \textbf{\texttt{in}} checks whether an element is contained in a
+sequence:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}58}]:} \PY{l+s}{\PYZsq{}}\PY{l+s}{Bob}\PY{l+s}{\PYZsq{}} \PY{o+ow}{in} \PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Bob}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{l+m+mf}{0.0}\PY{p}{,}\PY{l+m+mf}{21.0}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}58}]:} True
+\end{Verbatim}
+        
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}59}]:} \PY{l+m+mi}{2} \PY{o+ow}{in} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{]}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}59}]:} True
+\end{Verbatim}
+        
+    For strings, is particularly nice, \emph{\texttt{in}} checks if a string
+is contained in another one:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}60}]:} \PY{l+s}{\PYZsq{}}\PY{l+s}{cde}\PY{l+s}{\PYZsq{}} \PY{o+ow}{in} \PY{l+s}{\PYZsq{}}\PY{l+s}{abcdefgh}\PY{l+s}{\PYZsq{}}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}60}]:} True
+\end{Verbatim}
+        
+    Again, it's not a necessary distinction, but one way to distinguish
+tuples and lists is that tuples are a collection of different things,
+here a name, and x and y coordinates, whereas a list is a collection of
+similar things, like if we wanted a list of those coordinates:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}61}]:} \PY{n}{positions} \PY{o}{=} \PY{p}{[}
+                      \PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Bob}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{l+m+mf}{0.0}\PY{p}{,}\PY{l+m+mf}{21.0}\PY{p}{)}\PY{p}{,}
+                      \PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Cat}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{l+m+mf}{2.5}\PY{p}{,}\PY{l+m+mf}{13.1}\PY{p}{)}\PY{p}{,}
+                      \PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Dog}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{l+m+mf}{33.0}\PY{p}{,}\PY{l+m+mf}{1.2}\PY{p}{)}
+                      \PY{p}{]}
+\end{Verbatim}
+
+    \subsection{Dictionaries}\label{dictionaries}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  called ``mappings'' or ``associative arrays'' in other languages
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    from a set of \emph{keys} to a set of \emph{values}
+  \end{itemize}
+\item
+  You can define, modify, view, lookup, and delete the key-value pairs
+  in the dictionary
+\end{itemize}
+
+    The index in a dictionary is called the \emph{key}, and the
+corresponding dictionary entry is the \emph{value}. A dictionary can use
+(almost) anything as the key. Whereas lists are formed with square
+brackets {[}{]}, dictionaries use curly brackets \{\}:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}62}]:} \PY{n}{ages} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s}{\PYZdq{}}\PY{l+s}{Rick}\PY{l+s}{\PYZdq{}}\PY{p}{:} \PY{l+m+mi}{46}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Bob}\PY{l+s}{\PYZdq{}}\PY{p}{:} \PY{l+m+mi}{86}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Fred}\PY{l+s}{\PYZdq{}}\PY{p}{:} \PY{l+m+mi}{21}\PY{p}{\PYZcb{}}
+         \PY{k}{print}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Rick}\PY{l+s}{\PYZsq{}}\PY{l+s}{s age is }\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{n}{ages}\PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{Rick}\PY{l+s}{\PYZdq{}}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Rick's age is  46
+    \end{Verbatim}
+
+    There's also a convenient way to create dictionaries without having to
+quote the keys.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}63}]:} \PY{n+nb}{dict}\PY{p}{(}\PY{n}{Rick}\PY{o}{=}\PY{l+m+mi}{46}\PY{p}{,}\PY{n}{Bob}\PY{o}{=}\PY{l+m+mi}{86}\PY{p}{,}\PY{n}{Fred}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}63}]:} \{'Bob': 86, 'Fred': 20, 'Rick': 46\}
+\end{Verbatim}
+        
+    The \textbf{len()} command works on both tuples and dictionaries:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}64}]:} \PY{n+nb}{len}\PY{p}{(}\PY{n}{t}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}64}]:} 4
+\end{Verbatim}
+        
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}65}]:} \PY{n+nb}{len}\PY{p}{(}\PY{n}{ages}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}65}]:} 3
+\end{Verbatim}
+        
+    \section{Modules}\label{modules}
+
+Are Python files (*.py) with functions, objects and/or variables.
+
+    \textbf{why modules?}
+
+\begin{itemize}
+\item
+  use classes and functions defined in another file
+\item
+  copy pasting code
+\end{itemize}
+
+    Like Java \textbf{\texttt{import}}, C++ \emph{include}
+
+Three formats of the command:
+
+\begin{verbatim}
+    import somefile (as sf)
+    
+    from somefile import *
+    
+    from somefile import className
+    
+\end{verbatim}
+
+    \paragraph{\texttt{import somefile}}\label{import-somefile}
+
+\begin{itemize}
+\item
+  Everything in \texttt{somefile.py} gets imported
+\item
+  to refer to something in the file, append the text \texttt{somefile.}
+  to the front of its name:
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    \texttt{somefile.myFunction(34)}
+  \end{itemize}
+\end{itemize}
+
+    \paragraph{\texttt{import somefile as sf}}\label{import-somefile-as-sf}
+
+\begin{itemize}
+\item
+  import with an alias
+\item
+  to refer to something in the file, append the text \texttt{sf.} to the
+  front of its name:
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    \texttt{sf.myFunction(34)}
+  \end{itemize}
+\end{itemize}
+
+    \paragraph{\texttt{from somefile import *}}\label{from-somefile-import}
+
+\begin{itemize}
+\item
+  everything in \texttt{somefile.py} gets imported
+\item
+  to refer to anything in the module, just use its name
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    everything in the module is now in the current namespace
+  \end{itemize}
+\item
+  CAUTION! using this import command can easily overwrite the definition
+  of an existing function or variable
+\end{itemize}
+
+    \paragraph{\texttt{from somefile import myFunction}**}\label{from-somefile-import-myfunction}
+
+\begin{itemize}
+\item
+  Only the item \texttt{myFunction} in \texttt{somefile.py} gets
+  imported
+\item
+  you can just use it without a module prefix
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    It's brought into the current namespace
+  \end{itemize}
+\item
+  CAUTION! This will overwrite the definition of this particular name if
+  it is already defined in the current namespace!
+\end{itemize}
+
+    \subsubsection{Commonly Used Modules}\label{commonly-used-modules}
+
+Some useful modules to import coming along with Python installation:
+
+\begin{itemize}
+\item
+  \textbf{\texttt{sys}} - Lots of handy stuff
+
+  \begin{itemize}
+  \item
+    \texttt{argv}
+  \item
+    \texttt{sys.path.append}
+  \end{itemize}
+\item
+  \textbf{\texttt{os}} - OS specific code
+
+  \begin{itemize}
+  \item
+    \texttt{listdir, system, \ldots{}}
+  \item
+    \texttt{os.path} - directory processing
+  \end{itemize}
+\item
+  \textbf{\texttt{math}} - mathematical code
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    \texttt{sin, cos, exp, log, sqrt, \ldots{}}
+  \end{itemize}
+\item
+  \textbf{\texttt{random}} - random number code
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    \texttt{uniform, choice, shuffle}
+  \end{itemize}
+\item
+  \textbf{\texttt{argparse}} - script input parsing
+\end{itemize}
+
+    \paragraph{For scientists}\label{for-scientists}
+
+\begin{itemize}
+\item
+  \textbf{\texttt{numpy}} - basis for numerics
+
+  \begin{itemize}
+  \item
+    powerful \texttt{numpy} array
+  \item
+    efficient functions on \texttt{numpy} arrays
+  \end{itemize}
+\item
+  \textbf{\texttt{scipy}}` - advanced methods
+
+  \begin{itemize}
+  \item
+    linear algebra
+  \item
+    integration, ODE solving, \ldots{}
+  \end{itemize}
+\item
+  \textbf{\texttt{matplotlib}} - matlab like plotting
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    plotting
+  \end{itemize}
+\end{itemize}
+
+    \textbf{Hands on!}
+
+Import the \textbf{\texttt{time}} module and get the local time
+
+    Tim Peters, one of the earliest and most prolific Python contributors,
+wrote the ``Zen of Python'', which can be accessed via the ``import
+this'' command \ldots{}
+
+No matter how experienced a programmer you are, these are words to
+meditate on.
+
+    \section{References}\label{references}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  \href{http://docs.python.org/2/tutorial/}{Python Tutorial}
+\item
+  \href{http://learnpythonthehardway.org/book/}{Learn Python the Hard
+  Way}
+\item
+  \href{http://docs.python.org/2.7/}{Python Documentation}
+\item
+  \href{http://docs.python.org/2.7/reference/index.html}{Python Language
+  Reference}
+\end{itemize}
+
+\subsection{Packages for Scientists}\label{packages-for-scientists}
+
+Important libraries
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  \href{http://www.numpy.org}{Numpy}, the core numerical extensions for
+  linear algebra and multidimensional arrays;
+\item
+  \href{http://www.scipy.org}{Scipy}, additional libraries for
+  scientific programming;
+\item
+  \href{http://matplotlib.sf.net}{Matplotlib}, excellent plotting and
+  graphing libraries;
+\item
+  \href{http://ipython.org}{IPython}, with the additional libraries
+  required for the notebook interface.
+\item
+  \href{http://sympy.org}{Sympy}, symbolic math in Python
+\item
+  \href{http://pandas.pydata.org/}{Pandas} library for big data in
+  Python
+\end{itemize}
+
+\subsection{Badass IPython Notebooks}\label{badass-ipython-notebooks}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Rob Johansson's \href{http://jrjohansson.github.io/}{excellent
+  notebooks}, including
+  \href{https://github.com/jrjohansson/scientific-python-lectures}{Scientific
+  Computing with Python} and
+  \href{https://github.com/jrjohansson/qutip-lectures}{Computational
+  Quantum Physics with QuTiP} lectures;
+\item
+  \href{http://nbviewer.ipython.org/url/jakevdp.github.com/downloads/notebooks/XKCD_plots.ipynb}{XKCD
+  style graphs in matplotlib};
+\item
+  \href{https://github.com/ipython/ipython/tree/master/examples/notebooks\#a-collection-of-notebooks-for-using-ipython-effectively}{A
+  collection of Notebooks for using IPython effectively}
+\item
+  \href{https://github.com/ipython/ipython/wiki/A-gallery-of-interesting-IPython-Notebooks}{A
+  gallery of interesting IPython Notebooks}
+\item
+  \href{https://github.com/invisibleroads/crosscompute-tutorials}{Cross-disciplinary
+  computational analysis IPython Notebooks From Hadoop World 2012}
+\item
+  \href{http://nbviewer.ipython.org/urls/raw.github.com/tbekolay/pyconca2012/master/QuantitiesTutorial.ipynb}{Quantites}
+  Units in Python.
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    \href{http://www.southampton.ac.uk/~fangohr/blog/}{Another units
+    module is here}
+  \end{itemize}
+\end{itemize}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
