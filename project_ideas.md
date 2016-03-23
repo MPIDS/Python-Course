@@ -9,7 +9,7 @@
 ##Image processing
 * object tracking with opencv (e.g. a flock of birds in a youtube video)
 * blob detection (size distribution of moon craters, intensity distribution of galaxies in Hubble Ultra-Deep Field image)
-* event detection (cars)
+* event detection (cars, heart-rate)
 * video stabilization
 * webcam game (e.g. gesture-controlled Pong)
 
@@ -19,6 +19,7 @@
 * statistical characterization of noise (crackling noise of fire, noise of breaking waves, noise of rain)
 * time analysis of a dripping faucet
 * beat variations in human vs artificial music
+* advanced: sonar
 
 ##Text processing
 * identify the author of a text
